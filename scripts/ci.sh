@@ -16,11 +16,11 @@ run_step() {
     printf "  %-40s " "$label"
     if "$@" > /tmp/ci-step.log 2>&1; then
         echo -e "${GREEN}PASS${NC}"
-        ((PASS++))
+        PASS=$((PASS + 1))
     else
         echo -e "${RED}FAIL${NC}"
         cat /tmp/ci-step.log
-        ((FAIL++))
+        FAIL=$((FAIL + 1))
     fi
 }
 
