@@ -29,9 +29,9 @@ so I (and you) can actually find things:
 
 <table>
 <tr>
-<td width="33%" align="center"><img src="assets/lane-frontend.svg" alt="Web & Local-First" width="100%"/></td>
-<td width="33%" align="center"><img src="assets/lane-bots.svg" alt="Bots, Assistants & Control Surfaces" width="100%"/></td>
-<td width="33%" align="center"><img src="assets/lane-automation.svg" alt="Automation, Verification & Tooling" width="100%"/></td>
+<td width="33%" align="center"><img src="assets/lane-web.svg" alt="Web & Local-First" width="100%"/></td>
+<td width="33%" align="center"><img src="assets/lane-assistants.svg" alt="Bots, Assistants & Control Surfaces" width="100%"/></td>
+<td width="33%" align="center"><img src="assets/lane-verify.svg" alt="Automation, Verification & Tooling" width="100%"/></td>
 </tr>
 </table>
 
