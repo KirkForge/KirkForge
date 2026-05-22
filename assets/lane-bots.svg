@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 280" width="380" height="280" role="img" aria-label="Lane — Bots and Widgets">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 280" width="380" height="280" role="img" aria-label="Lane — Bots, Assistants & Control Surfaces">
   <defs>
     <pattern id="lane2-grain" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
       <rect width="60" height="60" fill="#1a1a1a"/>
@@ -17,7 +17,7 @@
     <polygon points="14,18 22,18 18,32 26,32 22,46 14,46 18,32 10,32"/>
     <polygon points="350,18 358,18 354,32 362,32 358,46 350,46 354,32 346,32"/>
   </g>
-  <text x="186" y="40" font-family="'Courier New', monospace" font-size="20" font-weight="700" fill="#0a0a0a" text-anchor="middle" letter-spacing="6">BOTS · WIDGETS</text>
+  <text x="186" y="40" font-family="'Courier New', monospace" font-size="20" font-weight="700" fill="#0a0a0a" text-anchor="middle" letter-spacing="6">BOTS · ASSISTANTS</text>
 
   <g fill="#2a2a2a">
     <circle cx="16" cy="20" r="2"/><circle cx="356" cy="20" r="2"/>
@@ -41,7 +41,7 @@
 
   <g font-family="'Courier New', monospace" fill="#b8b0a0">
     <text x="20" y="218" font-size="12" letter-spacing="2">DISCORD · TELEGRAM BOTS</text>
-    <text x="20" y="236" font-size="12" letter-spacing="2">FAQ WIDGETS · LOREBOOKS</text>
-    <text x="20" y="254" font-size="12" letter-spacing="2">PYTHON · NO LLMs</text>
+    <text x="20" y="236" font-size="12" letter-spacing="2">LLM CONTROL SURFACES</text>
+    <text x="20" y="254" font-size="12" letter-spacing="2">MCP · ASSISTANT RUNTIMES</text>
   </g>
 </svg>
