@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" width="1200" height="120" role="img" aria-label="Manifest signoff">
+  <defs>
+    <pattern id="seal-haz" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="16" height="32" fill="#e8b923"/>
+      <rect x="16" width="16" height="32" fill="#0a0a0a"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="120" fill="#0a0a0a"/>
+  <rect x="0" y="0" width="1200" height="8" fill="url(#seal-haz)"/>
+  <rect x="0" y="112" width="1200" height="8" fill="url(#seal-haz)"/>
+
+  <!-- circular stamp -->
+  <g transform="translate(110 60)">
+    <circle cx="0" cy="0" r="42" fill="none" stroke="#c8341f" stroke-width="2" transform="rotate(-8)"/>
+    <circle cx="0" cy="0" r="36" fill="none" stroke="#c8341f" stroke-width="1" transform="rotate(-8)"/>
+    <text x="0" y="-4" font-family="'Courier New', monospace" font-size="12" font-weight="700" fill="#c8341f" text-anchor="middle" letter-spacing="3" transform="rotate(-8)">STILL</text>
+    <text x="0" y="12" font-family="'Courier New', monospace" font-size="12" font-weight="700" fill="#c8341f" text-anchor="middle" letter-spacing="3" transform="rotate(-8)">BUILDING</text>
+  </g>
+
+  <!-- main text -->
+  <g font-family="'Courier New', monospace">
+    <text x="200" y="48" font-size="18" font-weight="700" fill="#f0eada" letter-spacing="6">END OF MANIFEST</text>
+    <text x="200" y="72" font-size="11" fill="#7a7a7a" letter-spacing="3">// not a software engineer. i build things, i learn fast.</text>
+    <text x="200" y="92" font-size="11" fill="#7a7a7a" letter-spacing="3">// the work is the point.</text>
+  </g>
+
+  <!-- right serial -->
+  <g transform="translate(1180 60)" font-family="'Courier New', monospace" text-anchor="end">
+    <text x="0" y="-8" font-size="10" fill="#5a5a5a" letter-spacing="2">UNIT 55N10E</text>
+    <text x="0" y="6" font-size="10" fill="#5a5a5a" letter-spacing="2">REV. 2026</text>
+    <text x="0" y="20" font-size="10" fill="#5a5a5a" letter-spacing="2">MIT</text>
+  </g>
+</svg>

@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" width="1200" height="320" role="img" aria-label="55N 10E — Henrik / software builder">
+  <defs>
+    <pattern id="rivets-h" x="0" y="0" width="36" height="36" patternUnits="userSpaceOnUse">
+      <circle cx="18" cy="18" r="2.2" fill="#1a1a1a"/>
+      <circle cx="18" cy="18" r="0.9" fill="#3a3a3a"/>
+    </pattern>
+    <pattern id="hazard" x="0" y="0" width="48" height="48" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="24" height="48" fill="#e8b923"/>
+      <rect x="24" width="24" height="48" fill="#0a0a0a"/>
+    </pattern>
+    <pattern id="grain" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+      <rect width="100" height="100" fill="#1f1f1f"/>
+      <circle cx="13" cy="27" r="0.5" fill="#2a2a2a"/>
+      <circle cx="67" cy="14" r="0.4" fill="#2a2a2a"/>
+      <circle cx="42" cy="71" r="0.6" fill="#2a2a2a"/>
+      <circle cx="88" cy="58" r="0.4" fill="#2a2a2a"/>
+      <circle cx="23" cy="84" r="0.5" fill="#2a2a2a"/>
+      <circle cx="71" cy="91" r="0.4" fill="#2a2a2a"/>
+      <circle cx="55" cy="44" r="0.3" fill="#2a2a2a"/>
+      <circle cx="6" cy="62" r="0.5" fill="#2a2a2a"/>
+    </pattern>
+    <linearGradient id="plate-shade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#242424"/>
+      <stop offset="0.5" stop-color="#1c1c1c"/>
+      <stop offset="1" stop-color="#0f0f0f"/>
+    </linearGradient>
+  </defs>
+
+  <!-- background steel plate -->
+  <rect width="1200" height="320" fill="url(#grain)"/>
+  <rect width="1200" height="320" fill="url(#plate-shade)" opacity="0.85"/>
+
+  <!-- hazard stripe top + bottom -->
+  <rect x="0" y="0" width="1200" height="14" fill="url(#hazard)"/>
+  <rect x="0" y="306" width="1200" height="14" fill="url(#hazard)"/>
+
+  <!-- riveted frame -->
+  <g>
+    <rect x="20" y="28" width="1160" height="14" fill="url(#rivets-h)"/>
+    <rect x="20" y="278" width="1160" height="14" fill="url(#rivets-h)"/>
+  </g>
+
+  <!-- left placard: HENRIK -->
+  <g font-family="'Courier New', monospace" font-weight="700">
+    <text x="60" y="148" font-size="92" fill="#f0eada" letter-spacing="6" stroke="#0a0a0a" stroke-width="0.5">HENRIK</text>
+    <!-- stencil bridges -->
+    <rect x="60" y="118" width="380" height="3" fill="#1c1c1c"/>
+  </g>
+
+  <!-- subtitle: SOFTWARE BUILDER -->
+  <g font-family="'Courier New', monospace">
+    <text x="62" y="194" font-size="22" fill="#e8b923" letter-spacing="8" font-weight="700">SOFTWARE · BUILDER</text>
+  </g>
+
+  <!-- coordinate stamp (subtext) -->
+  <g transform="translate(62 232)">
+    <rect x="0" y="0" width="14" height="14" fill="#c8341f"/>
+    <text x="24" y="12" font-family="'Courier New', monospace" font-size="14" fill="#b8b0a0" letter-spacing="2">55°N · 10°E   JUTLAND   DK</text>
+  </g>
+
+  <!-- right-hand instrument block -->
+  <g transform="translate(820 60)">
+    <!-- frame -->
+    <rect x="0" y="0" width="320" height="210" fill="#0e0e0e" stroke="#3a3a3a" stroke-width="1"/>
+    <rect x="0" y="0" width="320" height="210" fill="none" stroke="#1a1a1a" stroke-width="3" stroke-dasharray="0"/>
+    <!-- corner rivets -->
+    <circle cx="10" cy="10" r="2.5" fill="#2a2a2a"/>
+    <circle cx="310" cy="10" r="2.5" fill="#2a2a2a"/>
+    <circle cx="10" cy="200" r="2.5" fill="#2a2a2a"/>
+    <circle cx="310" cy="200" r="2.5" fill="#2a2a2a"/>
+
+    <!-- header strip -->
+    <rect x="0" y="0" width="320" height="22" fill="#1a1a1a"/>
+    <text x="10" y="15" font-family="'Courier New', monospace" font-size="10" fill="#e8b923" letter-spacing="3">UNIT.KirkForge / STATUS BOARD</text>
+
+    <!-- readout lines -->
+    <g font-family="'Courier New', monospace" font-size="13" fill="#c8c0b0">
+      <text x="14" y="48" letter-spacing="1">CALLSIGN .... KirkForge</text>
+      <text x="14" y="72" letter-spacing="1">TRADE ....... front-end / bots</text>
+      <text x="14" y="96" letter-spacing="1">LANG ........ DA · EN · NO · SE</text>
+      <text x="14" y="120" letter-spacing="1">PRIOR ....... mariner · navigator</text>
+      <text x="14" y="144" letter-spacing="1">SHIFT ....... AuDHD</text>
+      <text x="14" y="168" letter-spacing="1">STATUS ...... <tspan fill="#7dd87d">ON DECK</tspan></text>
+    </g>
+
+    <!-- blinking marker pretend -->
+    <circle cx="300" cy="12" r="3" fill="#7dd87d"/>
+  </g>
+
+  <!-- corner stencil mark -->
+  <g transform="translate(1120 232)" font-family="'Courier New', monospace" font-size="11" fill="#5a5a5a" letter-spacing="2" text-anchor="end">
+    <text x="60" y="0">SERIAL</text>
+    <text x="60" y="16">55N·10E·001</text>
+  </g>
+</svg>

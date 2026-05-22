@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 280" width="380" height="280" role="img" aria-label="Lane — Automation">
+  <defs>
+    <pattern id="lane3-grain" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+      <rect width="60" height="60" fill="#1a1a1a"/>
+      <circle cx="14" cy="22" r="0.4" fill="#252525"/>
+      <circle cx="45" cy="9" r="0.5" fill="#252525"/>
+      <circle cx="29" cy="51" r="0.3" fill="#252525"/>
+      <circle cx="6" cy="38" r="0.4" fill="#252525"/>
+    </pattern>
+  </defs>
+
+  <rect x="14" y="18" width="360" height="260" fill="#000" opacity="0.5"/>
+  <rect x="6" y="10" width="360" height="260" fill="url(#lane3-grain)" stroke="#3a3a3a" stroke-width="1"/>
+
+  <rect x="6" y="10" width="360" height="44" fill="#3a6b8a"/>
+  <g fill="#0a0a0a">
+    <polygon points="14,18 22,18 18,32 26,32 22,46 14,46 18,32 10,32"/>
+    <polygon points="350,18 358,18 354,32 362,32 358,46 350,46 354,32 346,32"/>
+  </g>
+  <text x="186" y="40" font-family="'Courier New', monospace" font-size="20" font-weight="700" fill="#f0eada" text-anchor="middle" letter-spacing="6">AUTOMATION</text>
+
+  <g fill="#2a2a2a">
+    <circle cx="16" cy="20" r="2"/><circle cx="356" cy="20" r="2"/>
+    <circle cx="16" cy="44" r="2"/><circle cx="356" cy="44" r="2"/>
+    <circle cx="16" cy="260" r="2"/><circle cx="356" cy="260" r="2"/>
+  </g>
+
+  <!-- gear glyph: proper cog with teeth flush to body -->
+  <g transform="translate(186 130)" fill="#e8b923">
+    <!-- 8 teeth as wide trapezoidal nubs hugging the rim -->
+    <g>
+      <rect x="-7" y="-46" width="14" height="14"/>
+      <rect x="-7" y="32" width="14" height="14"/>
+      <rect x="-46" y="-7" width="14" height="14"/>
+      <rect x="32" y="-7" width="14" height="14"/>
+      <g transform="rotate(45)">
+        <rect x="-7" y="-46" width="14" height="14"/>
+        <rect x="-7" y="32" width="14" height="14"/>
+        <rect x="-46" y="-7" width="14" height="14"/>
+        <rect x="32" y="-7" width="14" height="14"/>
+      </g>
+    </g>
+    <!-- body -->
+    <circle cx="0" cy="0" r="34"/>
+    <!-- inner cutout (dark plate color) -->
+    <circle cx="0" cy="0" r="24" fill="#1a1a1a"/>
+    <!-- center hub -->
+    <circle cx="0" cy="0" r="8"/>
+    <circle cx="0" cy="0" r="3" fill="#1a1a1a"/>
+  </g>
+
+  <g font-family="'Courier New', monospace" fill="#b8b0a0">
+    <text x="20" y="218" font-size="12" letter-spacing="2">TASK SCRIPTS · WORKFLOWS</text>
+    <text x="20" y="236" font-size="12" letter-spacing="2">QUALITY-OF-LIFE TOOLS</text>
+    <text x="20" y="254" font-size="12" letter-spacing="2">SCOPE-DEPENDENT</text>
+  </g>
+</svg>

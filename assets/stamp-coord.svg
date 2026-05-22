@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" width="240" height="60" role="img" aria-label="Coordinate stamp">
+  <rect width="240" height="60" fill="#0a0a0a"/>
+  <line x1="120" y1="6" x2="120" y2="22" stroke="#c8341f" stroke-width="2"/>
+  <circle cx="120" cy="6" r="2.5" fill="#c8341f"/>
+  <text x="120" y="42" font-family="'Courier New', monospace" font-size="14" font-weight="700" fill="#e8b923" text-anchor="middle" letter-spacing="4">55°N · 10°E</text>
+  <text x="120" y="54" font-family="'Courier New', monospace" font-size="8" fill="#7a7a7a" text-anchor="middle" letter-spacing="3">JUTLAND · DK</text>
+</svg>
