@@ -1,0 +1,23 @@
+# ci-cleandev configuration — edit to match your project's CI pipeline
+# Docs: https://github.com/your-org/ci-cleandev (or see README)
+#
+# mode: strict        # strict = fail on missing tools; normal = skip missing; fast = only build+test
+# timeout: 180        # per-step timeout in seconds
+
+# node:
+#   package_manager: auto   # auto | npm | pnpm | yarn | bun
+#   install: true            # run install if node_modules missing/stale
+#   scripts: [typecheck, lint, "test:ci", build]
+
+# python:
+#   commands: [pytest, "ruff check .", "mypy src"]
+
+# docker:
+#   build: true
+
+# security:
+#   trufflehog: optional     # required | optional | skip
+#   npm_audit: true
+
+# github_actions:
+#   actionlint: true
