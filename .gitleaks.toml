@@ -29,4 +29,13 @@ paths = [
   '''\.env\.example$''',
   '''\.env\.template$''',
   '''\.json\.template$''',
+  '''^tests?/''',
+  '''^test/''',
+  '''_test\.go$''',
+  '''_test\.py$''',
+  '''_test\.ts$''',
+  '''_test\.js$''',
+  '''Test\d*\.java$''',
+  '''\.__pycache__/''',
+  '''\.pyc$''',
 ]
