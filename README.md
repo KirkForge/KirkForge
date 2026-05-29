@@ -3,7 +3,7 @@
 </div>
 
 <br/>
-n[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support%20my%20hardware-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/KirkForge)
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support%20my%20hardware-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/KirkForge)
 
 <img src="assets/section-01.svg" alt="01 — Navigation" width="100%"/>
 
@@ -19,10 +19,10 @@ interfaces, state, storage, tests, docs, automation, and the rough edges between
 KirkForge started with a resurrected old laptop, a webchat assistant,
 and too many late nights turning hardware pain into code.
 
-AuDHD brain. Clear lanes or nothing gets done.
+I work in clear, well-scoped lanes — it's how I ship reliably.
 
 <br/>
-n[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support%20my%20hardware-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/KirkForge)
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support%20my%20hardware-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/KirkForge)
 
 <img src="assets/section-02.svg" alt="02 — Lanes" width="100%"/>
 
@@ -38,7 +38,7 @@ so I (and you) can actually find things:
 </table>
 
 <br/>
-n[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support%20my%20hardware-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/KirkForge)
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support%20my%20hardware-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/KirkForge)
 
 Most of my larger experiments live private while they are still rough:
 assistant runtimes, local-first dashboards, supply-chain/security tools,
@@ -47,25 +47,31 @@ Discord/LLM control surfaces, and strange little systems with memory.
 Some are polished. Some are shipyard scrap.
 The pattern is the same: useful tools with personality, provenance, and control.
 
+**Public work you can look at right now:**
+- [IronDome](https://github.com/KirkForge/IronDome) — kernel-enforcing seccomp sandbox
+- [PicoSentry](https://github.com/KirkForge/PicoSentry) — deterministic supply-chain scanner (MIT)
+- [Shogun](https://github.com/KirkForge/Shogun) — local-first dashboard framework
+
 <br/>
-n[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support%20my%20hardware-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/KirkForge)
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support%20my%20hardware-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/KirkForge)
 
 <img src="assets/notice-free.svg" alt="Notice — web work is free" width="100%"/>
 
-Web builds are free — I learn by shipping. Bots and automation
-start at **$10–13**; scope scales from there.
+Web builds are free — I learn by shipping.
+Bots and automation are quoted per project — [reach out](mailto:kirk@kirkforge.dev) and we'll figure it out.
 
 Nordic translation (Danish, Swedish, Norwegian), code tasks, data entry.
-Danish voice work too — North Zealand and Jutland accents. Long story.
+Danish voice work — North Zealand and Jutland accents — yes, really.
 
 <br/>
-n[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support%20my%20hardware-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/KirkForge)
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support%20my%20hardware-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/KirkForge)
 
 <img src="assets/section-03.svg" alt="03 — Hailing" width="100%"/>
 
-Reach me here on GitHub. Open an issue on any repo, or DM me. Danish, English, Norwegian, or Swedish all work.
+Reach me here on GitHub, or at [kirk@kirkforge.dev](mailto:kirk@kirkforge.dev).
+Open an issue, DM me, or send an email — Danish, English, Norwegian, or Swedish all work.
 
 <br/>
-n[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support%20my%20hardware-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/KirkForge)
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support%20my%20hardware-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/KirkForge)
 
 <img src="assets/seal-end.svg" alt="End of manifest — still building" width="100%"/>
