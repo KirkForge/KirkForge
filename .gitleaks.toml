@@ -1,0 +1,32 @@
+[extend]
+useDefault = true
+
+[[rules]]
+id = "google-oauth-refresh-token"
+description = "Google OAuth refresh token (1//...)"
+regex = '''1//[0-9A-Za-z_-]{30,}'''
+keywords = ["1//"]
+
+[[rules]]
+id = "google-oauth-access-token"
+description = "Google OAuth access token (ya29...)"
+regex = '''ya29\.[0-9A-Za-z._-]{30,}'''
+keywords = ["ya29."]
+
+[[rules]]
+id = "google-client-secret"
+description = "Google OAuth client secret (GOCSPX-)"
+regex = '''GOCSPX-[0-9A-Za-z_-]{20,}'''
+keywords = ["GOCSPX-"]
+
+[[rules]]
+id = "discord-bot-token"
+description = "Discord bot token"
+regex = '''[MNO][A-Za-z0-9_-]{23}\.[A-Za-z0-9_-]{6}\.[A-Za-z0-9_-]{27}'''
+
+[allowlist]
+paths = [
+  '''\.env\.example$''',
+  '''\.env\.template$''',
+  '''\.json\.template$''',
+]
