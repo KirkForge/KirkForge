@@ -384,15 +384,31 @@ fi
 # ─── Secret scan ─────────────────────────────────────────────────────────────
 if [ "$CI_MODE" != "fast" ]; then
     echo -e "${BOLD}[security]${NC}"
+    SECRET_SCANNERS=0
+
+    # gitleaks: primary scanner — uses per-repo .gitleaks.toml rules
+    if command -v gitleaks >/dev/null 2>&1; then
+        GL_ARGS="detect --source . --redact --exit-code 1"
+        if [ -f .gitleaks.toml ]; then
+            GL_ARGS="$GL_ARGS --config .gitleaks.toml"
+        fi
+        run_step "secrets (gitleaks)" gitleaks $GL_ARGS
+        SECRET_SCANNERS=$((SECRET_SCANNERS + 1))
+    fi
+
+    # trufflehog: secondary scanner — catches different patterns
     if command -v trufflehog >/dev/null 2>&1; then
         THOG_EXCLUDE_FILE="$(create_trufflehog_excludes)"
-        run_step "secrets" trufflehog filesystem . --no-update --fail --exclude-paths="$THOG_EXCLUDE_FILE" --filter-unverified
+        run_step "secrets (trufflehog)" trufflehog filesystem . --no-update --fail --exclude-paths="$THOG_EXCLUDE_FILE" --filter-unverified
         rm -f "$THOG_EXCLUDE_FILE"
-    else
+        SECRET_SCANNERS=$((SECRET_SCANNERS + 1))
+    fi
+
+    if [ "$SECRET_SCANNERS" -eq 0 ]; then
         if [ "$REQUIRE_TRUFFLEHOG" = "1" ]; then
-            fail_step "secrets" "(required but not installed)"
+            fail_step "secrets" "(no scanner installed — install gitleaks or trufflehog)"
         else
-            skip_step "secrets" "trufflehog not installed"
+            skip_step "secrets" "no scanner installed (install gitleaks or trufflehog)"
         fi
     fi
 fi
