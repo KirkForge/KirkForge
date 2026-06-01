@@ -2,9 +2,6 @@
   <img src="assets/banner.svg" alt="HENRIK — Software Builder · KirkForge" width="100%"/>
 </div>
 
-<br/>
-[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support%20my%20hardware-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/KirkForge)
-
 <img src="assets/section-01.svg" alt="01 — Navigation" width="100%"/>
 
 Software builder from Denmark.
@@ -21,9 +18,6 @@ and too many late nights turning hardware pain into code.
 
 I work in clear, well-scoped lanes — it's how I ship reliably.
 
-<br/>
-[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support%20my%20hardware-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/KirkForge)
-
 <img src="assets/section-02.svg" alt="02 — Lanes" width="100%"/>
 
 Everything lives under one username, but the work splits into three
@@ -37,9 +31,6 @@ so I (and you) can actually find things:
 </tr>
 </table>
 
-<br/>
-[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support%20my%20hardware-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/KirkForge)
-
 Most of my larger experiments live private while they are still rough:
 assistant runtimes, local-first dashboards, supply-chain/security tools,
 Discord/LLM control surfaces, and strange little systems with memory.
@@ -52,9 +43,6 @@ The pattern is the same: useful tools with personality, provenance, and control.
 - [PicoSentry](https://github.com/KirkForge/PicoSentry) — deterministic supply-chain scanner (MIT)
 - [Shogun](https://github.com/KirkForge/Shogun) — local-first dashboard framework
 
-<br/>
-[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support%20my%20hardware-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/KirkForge)
-
 <img src="assets/notice-free.svg" alt="Notice — web work is free" width="100%"/>
 
 Web builds are free — I learn by shipping.
@@ -63,15 +51,11 @@ Bots and automation are quoted per project — [reach out](mailto:kirk@kirkforge
 Nordic translation (Danish, Swedish, Norwegian), code tasks, data entry.
 Danish voice work — North Zealand and Jutland accents — yes, really.
 
-<br/>
-[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support%20my%20hardware-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/KirkForge)
-
 <img src="assets/section-03.svg" alt="03 — Hailing" width="100%"/>
 
 Reach me here on GitHub, or at [kirk@kirkforge.dev](mailto:kirk@kirkforge.dev).
 Open an issue, DM me, or send an email — Danish, English, Norwegian, or Swedish all work.
 
-<br/>
-[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support%20my%20hardware-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/KirkForge)
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support%20my%20hardware-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/kirkforge)
 
 <img src="assets/seal-end.svg" alt="End of manifest — still building" width="100%"/>
