@@ -86,17 +86,17 @@ run_step() {
         fi
         local line_count
         line_count="$(wc -l < "$log_file")"
-        echo -e "${DIM}----- $label output ($line_count lines) -----${NC}"
+        echo -e "${DIM}----- $label output ($line_count lines, full log: $log_file) -----${NC}"
         if [ "$line_count" -gt "$MAX_OUTPUT_LINES" ]; then
             head -n "$MAX_OUTPUT_LINES" "$log_file"
-            echo -e "${DIM}... ($((line_count - MAX_OUTPUT_LINES)) more lines, see full log above)${NC}"
+            echo -e "${DIM}... ($((line_count - MAX_OUTPUT_LINES)) more lines, see $log_file)${NC}"
         else
             cat "$log_file"
         fi
         echo -e "${DIM}--------------------------${NC}"
         echo -e "  exit code: ${exit_code}"
         FAIL=$((FAIL + 1))
-        rm -f "$log_file"
+        # Keep the log file on failure so the user can inspect the full output.
         return 1
     fi
 }
@@ -161,22 +161,35 @@ ensure_node_deps() {
     fi
     PM_AVAILABLE=1
 
-    if [ ! -d node_modules ]; then
-        case "$pm" in
-            pnpm) run_step "install ($pm)" pnpm install --frozen-lockfile ;;
-            yarn) run_step "install ($pm)" yarn install --frozen-lockfile ;;
-            bun)  run_step "install ($pm)" bun install ;;
-            npm)  run_step "install ($pm)" npm ci ;;
-        esac
-    else
-        local lockfile=""
-        case "$pm" in
-            pnpm) lockfile="pnpm-lock.yaml" ;;
-            yarn) lockfile="yarn.lock" ;;
-            bun)  lockfile="bun.lockb" ;;
-            npm)  lockfile="package-lock.json" ;;
-        esac
+    local lockfile=""
+    case "$pm" in
+        pnpm) lockfile="pnpm-lock.yaml" ;;
+        yarn) lockfile="yarn.lock" ;;
+        bun)  lockfile="bun.lockb" ;;
+        npm)  lockfile="package-lock.json" ;;
+    esac
 
+    if [ ! -d node_modules ]; then
+        # No node_modules — must install. If a lockfile exists, use the frozen
+        # variant for reproducibility; otherwise fall back to plain `install`
+        # (which will generate the lockfile).
+        if [ -n "$lockfile" ] && [ -f "$lockfile" ]; then
+            case "$pm" in
+                pnpm) run_step "install ($pm)" pnpm install --frozen-lockfile ;;
+                yarn) run_step "install ($pm)" yarn install --frozen-lockfile ;;
+                bun)  run_step "install ($pm)" bun install ;;
+                npm)  run_step "install ($pm)" npm ci ;;
+            esac
+        else
+            case "$pm" in
+                pnpm) run_step "install ($pm)" pnpm install ;;
+                yarn) run_step "install ($pm)" yarn install ;;
+                bun)  run_step "install ($pm)" bun install ;;
+                npm)  run_step "install ($pm)" npm install ;;
+            esac
+        fi
+    else
+        # node_modules exists — only reinstall if lockfile is newer
         if [ -n "$lockfile" ] && [ -f "$lockfile" ] && [ "$lockfile" -nt node_modules ] 2>/dev/null; then
             case "$pm" in
                 pnpm) run_step "install ($pm)" pnpm install --frozen-lockfile ;;
@@ -207,7 +220,9 @@ has_github_actions() {
 is_watch_test() {
     local test_cmd
     test_cmd="$(node -e "const p=require('./package.json'); console.log(p.scripts.test)" 2>/dev/null || true)"
-    echo "$test_cmd" | grep -qiE '(vitest|jest).*--watch|watch.*(vitest|jest)|--watchAll'
+    # Catches: vitest --watch, jest --watch, watch vitest, vitest watch (subcommand),
+    # --watchAll, and combinations with extra flags (--coverage, --ui, etc.).
+    echo "$test_cmd" | grep -qiE '(vitest|jest).*--watch|watch.*(vitest|jest)|--watchAll|(vitest|jest)[[:space:]]+watch\b'
 }
 
 # ─── Trufflehog exclude file ─────────────────────────────────────────────────
@@ -287,7 +302,9 @@ if [ -f package.json ]; then
                 elif echo "$test_cmd" | grep -q 'jest'; then
                     run_step "test" npx jest --ci
                 else
-                    run_step "test" $pm test
+                    # Watch mode detected but runner unclear — don't blindly
+                    # re-run the watch command (it would hang until timeout).
+                    warn_step "test" "watch mode but runner not recognized (cmd: $test_cmd) — skipping"
                 fi
             else
                 run_step "test" $pm test
@@ -419,6 +436,8 @@ echo -e "${BOLD}─────────────────────�
 if [ "$FAIL" -gt 0 ]; then
     echo -e "${RED}${BOLD}  FAIL${NC}  ${RED}$FAIL failed${NC}, $PASS passed, $SKIP skipped, $WARN warnings"
     echo ""
+    echo -e "${DIM}Failed step logs are kept in /tmp (paths printed above). Clean with:${NC}"
+    echo -e "${DIM}  rm -f /tmp/ci-cleandev.*.log${NC}"
     exit 1
 else
     echo -e "${GREEN}${BOLD}  PASS${NC}  $PASS passed, $SKIP skipped, $WARN warnings"
