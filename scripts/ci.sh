@@ -51,7 +51,11 @@ load_config() {
 
         key="${line%%=*}"
         val="${line#*=}"
-        key="$(echo "$key" | sed 's/[[:space:]]*//')"
+        # Trim BOTH leading and trailing whitespace from key — the previous
+        # version only trimmed leading, so "mode = fast" left key="mode "
+        # which didn't match the `mode)` case. Users had to write "mode=fast"
+        # (no spaces) for the config to be picked up.
+        key="$(echo "$key" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')"
         val="$(echo "$val" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')"
 
         case "$key" in
@@ -399,35 +403,44 @@ if has_github_actions; then
 fi
 
 # ─── Secret scan ─────────────────────────────────────────────────────────────
-if [ "$CI_MODE" != "fast" ]; then
-    echo -e "${BOLD}[security]${NC}"
-    SECRET_SCANNERS=0
+# gitleaks is the primary scanner and ALWAYS runs — secrets must be checked
+# before every push, regardless of CI mode. The previous implementation gated
+# the whole block on [ "$CI_MODE" != "fast" ], which let `mode = fast` push
+# commits without any secret scan. (AGENTS.md secure-defaults: the secure
+# state is the DEFAULT; opening it up is an explicit opt-in.)
+# trufflehog is the slower secondary scanner and is the only one fast mode
+# skips. `require_trufflehog = 1` fails the run if trufflehog is missing,
+# regardless of gitleaks — the previous implementation only fired when
+# neither scanner was installed, so requiring trufflehog while gitleaks was
+# present silently passed.
+echo -e "${BOLD}[security]${NC}"
 
-    # gitleaks: primary scanner — uses per-repo .gitleaks.toml rules
-    if command -v gitleaks >/dev/null 2>&1; then
-        GL_ARGS="detect --source . --redact --exit-code 1"
-        if [ -f .gitleaks.toml ]; then
-            GL_ARGS="$GL_ARGS --config .gitleaks.toml"
-        fi
-        run_step "secrets (gitleaks)" gitleaks $GL_ARGS
-        SECRET_SCANNERS=$((SECRET_SCANNERS + 1))
+# gitleaks: primary scanner — always runs
+if command -v gitleaks >/dev/null 2>&1; then
+    GL_ARGS="detect --source . --redact --exit-code 1"
+    if [ -f .gitleaks.toml ]; then
+        GL_ARGS="$GL_ARGS --config .gitleaks.toml"
     fi
+    run_step "secrets (gitleaks)" gitleaks $GL_ARGS
+else
+    skip_step "secrets (gitleaks)" "not installed (install gitleaks)"
+fi
 
-    # trufflehog: secondary scanner — catches different patterns
-    if command -v trufflehog >/dev/null 2>&1; then
-        THOG_EXCLUDE_FILE="$(create_trufflehog_excludes)"
-        run_step "secrets (trufflehog)" trufflehog filesystem . --no-update --fail --exclude-paths="$THOG_EXCLUDE_FILE" --filter-unverified
-        rm -f "$THOG_EXCLUDE_FILE"
-        SECRET_SCANNERS=$((SECRET_SCANNERS + 1))
+# trufflehog: secondary scanner — skipped only in fast mode
+if [ "$CI_MODE" = "fast" ]; then
+    if [ "$REQUIRE_TRUFFLEHOG" = "1" ]; then
+        warn_step "secrets (trufflehog)" "fast mode is set AND require_trufflehog=1 — trufflehog is being skipped, your require is effectively ignored in fast mode"
+    else
+        skip_step "secrets (trufflehog)" "fast mode (gitleaks still ran above)"
     fi
-
-    if [ "$SECRET_SCANNERS" -eq 0 ]; then
-        if [ "$REQUIRE_TRUFFLEHOG" = "1" ]; then
-            fail_step "secrets" "(no scanner installed — install gitleaks or trufflehog)"
-        else
-            skip_step "secrets" "no scanner installed (install gitleaks or trufflehog)"
-        fi
-    fi
+elif command -v trufflehog >/dev/null 2>&1; then
+    THOG_EXCLUDE_FILE="$(create_trufflehog_excludes)"
+    run_step "secrets (trufflehog)" trufflehog filesystem . --no-update --fail --exclude-paths="$THOG_EXCLUDE_FILE" --filter-unverified
+    rm -f "$THOG_EXCLUDE_FILE"
+elif [ "$REQUIRE_TRUFFLEHOG" = "1" ]; then
+    fail_step "secrets (trufflehog)" "required by config (require_trufflehog=1) but not installed"
+else
+    skip_step "secrets (trufflehog)" "not installed (install trufflehog)"
 fi
 
 # ─── Summary ─────────────────────────────────────────────────────────────────
