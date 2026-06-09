@@ -1,0 +1,81 @@
+#!/usr/bin/env bash
+# KirkForge pre-push hook — runs scripts/ci.sh before every push.
+# Blocks push on CI failure.
+#
+# This file should be installed at <repo>/.git/hooks/pre-push. It is
+# committed to the repo at scripts/hooks/pre-push so the install is
+# reproducible on a fresh clone or new machine.
+#
+# Install:  ln -sf ../../scripts/hooks/pre-push .git/hooks/pre-push
+#      or:  cp scripts/hooks/pre-push .git/hooks/pre-push && chmod +x .git/hooks/pre-push
+#
+# Resolution order for the CI script (first match wins):
+#   1. <repo>/scripts/ci.sh  (the in-repo source of truth — preferred)
+#   2. Shared ci-cleandev install (via the symlink path, if the hook is
+#      symlinked into a ci-cleandev install)
+#   3. Well-known shared locations (~/Madlab/Clean-Live/ci-cleandev/...,
+#      ~/.local/share/ci-cleandev/..., /usr/local/share/ci-cleandev/...)
+
+set -uo pipefail
+
+REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || true)"
+if [ -z "$REPO_ROOT" ]; then
+    echo "pre-push: not inside a git repo" >&2
+    exit 1
+fi
+
+# 1. Local scripts/ci.sh (preferred — in-repo source of truth)
+if [ -x "$REPO_ROOT/scripts/ci.sh" ]; then
+    CI_SCRIPT="$REPO_ROOT/scripts/ci.sh"
+fi
+
+# 2. Resolved symlink target (only if hook itself is a symlink)
+if [ -z "${CI_SCRIPT:-}" ] && [ -L "$REPO_ROOT/.git/hooks/pre-push" ]; then
+    HOOK_TARGET="$(readlink -f "$REPO_ROOT/.git/hooks/pre-push" 2>/dev/null || true)"
+    if [ -n "$HOOK_TARGET" ]; then
+        CLEANDEV_ROOT="$(dirname "$(dirname "$HOOK_TARGET")")"
+        if [ -x "$CLEANDEV_ROOT/scripts/ci.sh" ]; then
+            CI_SCRIPT="$CLEANDEV_ROOT/scripts/ci.sh"
+        fi
+    fi
+fi
+
+# 3. Well-known shared locations
+if [ -z "${CI_SCRIPT:-}" ]; then
+    for candidate in \
+        "$HOME/Madlab/Clean-Live/ci-cleandev/scripts/ci.sh" \
+        "$HOME/.local/share/ci-cleandev/scripts/ci.sh" \
+        "/usr/local/share/ci-cleandev/scripts/ci.sh"
+    do
+        if [ -x "$candidate" ]; then
+            CI_SCRIPT="$candidate"
+            break
+        fi
+    done
+fi
+
+if [ -z "${CI_SCRIPT:-}" ]; then
+    echo "  ci-cleandev not found — skipping pre-push CI."
+    echo "  Install with: cp scripts/hooks/pre-push .git/hooks/pre-push && chmod +x .git/hooks/pre-push"
+    exit 0
+fi
+
+echo ""
+echo -e "\033[1m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo -e "\033[1m  pre-push CI gate\033[0m  (\033[2m$CI_SCRIPT\033[0m)"
+echo -e "\033[1m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+
+cd "$REPO_ROOT"
+
+if "$CI_SCRIPT"; then
+    echo ""
+    echo -e "\033[0;32m  ✓ CI passed — pushing.\033[0m"
+    echo ""
+    exit 0
+else
+    echo ""
+    echo -e "\033[0;31m  ✗ CI failed — push blocked.\033[0m"
+    echo -e "\033[2m  Fix the issues above and try again.\033[0m"
+    echo ""
+    exit 1
+fi
