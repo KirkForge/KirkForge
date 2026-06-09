@@ -46,3 +46,11 @@ credentials.json
 *.db-shm
 *.db-wal
 *.sqlite
+
+# --- Toolchain generated artifacts ---
+# gitnexus (code intelligence MCP)
+.claude/
+CLAUDE.md
+
+# graphify (knowledge graph builder)
+graphify-out/
