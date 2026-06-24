@@ -54,3 +54,7 @@ CLAUDE.md
 
 # graphify (knowledge graph builder)
 graphify-out/
+
+# LLM tooling (never committed)
+AGENTS.md
+state.md
